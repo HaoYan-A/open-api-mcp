@@ -7,22 +7,42 @@
   "bin": {
     "open-api-mcp": "dist/index.js"
   },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE",
+    ".env.example"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "dev": "tsc && node dist/index.js",
     "start": "node dist/index.js",
-    "inspect": "tsc && npx @modelcontextprotocol/inspector dist/index.js"
+    "inspect": "tsc && npx @modelcontextprotocol/inspector dist/index.js",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "mcp",
+    "model-context-protocol",
     "openapi",
+    "swagger",
     "oauth2",
     "api",
-    "swagger"
+    "rest",
+    "claude",
+    "ai",
+    "llm"
   ],
-  "author": "",
+  "author": "HaoYan-A",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HaoYan-A/open-api-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HaoYan-A/open-api-mcp/issues"
+  },
+  "homepage": "https://github.com/HaoYan-A/open-api-mcp#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
     "@scalar/openapi-parser": "^0.22.3",
