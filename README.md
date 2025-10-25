@@ -14,9 +14,29 @@ A Model Context Protocol (MCP) server that provides AI assistants with access to
 
 ## Installation
 
+### Option 1: Using npx (Recommended)
+
+No installation required! Use npx to run directly:
+
 ```bash
+npx @yanhao-an/open-api-mcp
+```
+
+### Option 2: Global Installation
+
+```bash
+npm install -g @yanhao-an/open-api-mcp
+open-api-mcp
+```
+
+### Option 3: From Source (Development)
+
+```bash
+git clone https://github.com/HaoYan-A/open-api-mcp.git
+cd open-api-mcp
 npm install
 npm run build
+npm start
 ```
 
 ## Configuration
@@ -136,8 +156,29 @@ Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/
 {
   "mcpServers": {
     "open-api": {
-      "command": "node",
-      "args": ["/path/to/open-api-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@yanhao-an/open-api-mcp"],
+      "env": {
+        "OPENAPI_SPEC_URL": "http://127.0.0.1/v3/api-docs",
+        "AUTH_MODE": "oauth2",
+        "OAUTH_FLOW": "clientCredentials",
+        "OAUTH_CLIENT_ID": "your-client-id",
+        "OAUTH_CLIENT_SECRET": "your-client-secret",
+        "OAUTH_TOKEN_URL": "https://auth.example.com/oauth/token"
+      }
+    }
+  }
+}
+```
+
+Or if you installed it globally:
+
+```json
+{
+  "mcpServers": {
+    "open-api": {
+      "command": "open-api-mcp",
+      "args": [],
       "env": {
         "OPENAPI_SPEC_URL": "http://127.0.0.1/v3/api-docs",
         "AUTH_MODE": "oauth2",
