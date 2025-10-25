@@ -1,0 +1,38 @@
+{
+  "name": "open-api-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for OpenAPI specification with OAuth 2.0 support",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "open-api-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "tsc && node dist/index.js",
+    "start": "node dist/index.js",
+    "inspect": "tsc && npx @modelcontextprotocol/inspector dist/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "openapi",
+    "oauth2",
+    "api",
+    "swagger"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@scalar/openapi-parser": "^0.22.3",
+    "axios": "^1.7.9",
+    "dotenv": "^16.4.7",
+    "openapi-types": "^12.1.3",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.3"
+  }
+}

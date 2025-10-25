@@ -1,0 +1,18 @@
+{
+  "command": "node",
+  "args": [
+    "/Users/yanhao/Documents/codes/open-api-mcp/dist/index.js"
+  ],
+  "env": {
+    "OPENAPI_SPEC_URL": "http://127.0.0.1/v3/api-docs",
+    "AUTH_MODE": "oauth2",
+    "OAUTH_FLOW": "clientCredentials",
+    "OAUTH_CLIENT_ID": "<YOUR_CLIENT_ID>",
+    "OAUTH_CLIENT_SECRET": "<YOUR_CLIENT_SECRET>",
+    "OAUTH_TOKEN_URL": "https://auth.example.com/oauth/token",
+    "OAUTH_SCOPE": "read write",
+    "LOG_LEVEL": "info",
+    "LOG_REQUESTS": "true",
+    "LOG_RESPONSES": "false"
+  }
+}

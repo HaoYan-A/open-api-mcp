@@ -1,0 +1,13 @@
+{
+  "command": "node",
+  "args": [
+    "/Users/yanhao/Documents/codes/open-api-mcp/dist/index.js"
+  ],
+  "env": {
+    "OPENAPI_SPEC_URL": "http://127.0.0.1/v3/api-docs",
+    "AUTH_MODE": "none",
+    "LOG_LEVEL": "info",
+    "LOG_REQUESTS": "true",
+    "LOG_RESPONSES": "false"
+  }
+}
