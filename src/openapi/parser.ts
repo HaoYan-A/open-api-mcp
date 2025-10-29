@@ -284,4 +284,16 @@ export class OpenAPIParser {
   getBaseUrl(): string {
     return this.baseUrl;
   }
+
+  /**
+   * Reload parser with a new OpenAPI document
+   */
+  reload(document: OpenAPIDocument): void {
+    logger.info('Reloading OpenAPI document...');
+    this.document = document;
+    this.endpoints = [];
+    this.baseUrl = this.extractBaseUrl();
+    this.indexEndpoints();
+    logger.info('OpenAPI document reloaded successfully');
+  }
 }

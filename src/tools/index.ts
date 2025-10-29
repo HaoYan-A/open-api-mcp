@@ -5,13 +5,15 @@
 import { Server } from '@modelcontextprotocol/sdk/server/index.js';
 import { CallToolRequestSchema, ListToolsRequestSchema } from '@modelcontextprotocol/sdk/types.js';
 import type { OpenAPIParser } from '../openapi/parser.js';
+import type { OpenAPILoader } from '../openapi/loader.js';
 import type { ApiCaller } from '../api/caller.js';
 import { logger } from '../logger.js';
 
 export function registerTools(
   server: Server,
   parser: OpenAPIParser,
-  apiCaller: ApiCaller
+  apiCaller: ApiCaller,
+  loader: OpenAPILoader
 ): void {
   // List available tools
   server.setRequestHandler(ListToolsRequestSchema, async () => {
@@ -121,6 +123,19 @@ export function registerTools(
           inputSchema: {
             type: 'object',
             properties: {},
+          },
+        },
+        {
+          name: 'refreshApiSpec',
+          description: 'Refresh and reload the OpenAPI specification from the remote URL to get the latest API definitions',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              forceRefresh: {
+                type: 'boolean',
+                description: 'Force refresh even if cache is valid (default: true)',
+              },
+            },
           },
         },
       ],
@@ -260,6 +275,42 @@ export function registerTools(
               {
                 type: 'text',
                 text: JSON.stringify(info, null, 2),
+              },
+            ],
+          };
+        }
+
+        case 'refreshApiSpec': {
+          const args = request.params.arguments as {
+            forceRefresh?: boolean;
+          };
+
+          const forceRefresh = args.forceRefresh !== false; // Default to true
+
+          logger.info(`Refreshing OpenAPI spec (forceRefresh: ${forceRefresh})`);
+
+          // Reload the document
+          const document = await loader.load(forceRefresh);
+
+          // Reload the parser with the new document
+          parser.reload(document);
+
+          // Get updated info
+          const info = parser.getInfo();
+
+          return {
+            content: [
+              {
+                type: 'text',
+                text: JSON.stringify(
+                  {
+                    success: true,
+                    message: 'OpenAPI specification refreshed successfully',
+                    info,
+                  },
+                  null,
+                  2
+                ),
               },
             ],
           };

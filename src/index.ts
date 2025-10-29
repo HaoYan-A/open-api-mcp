@@ -126,7 +126,7 @@ async function main() {
     const apiCaller = new ApiCaller(parser.getBaseUrl(), config);
 
     // Register tools
-    registerTools(server, parser, apiCaller);
+    registerTools(server, parser, apiCaller, loader);
 
     logger.info('MCP tools registered successfully');
 
